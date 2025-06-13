@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Facilities</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+            url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        
+        .hero h1 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 25px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Facility Section */
+        .facility-section {
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        
+        .facility-section h2 {
+            font-size: 25px;
+            margin-bottom: 50px;
+            color: #222;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .facility-section h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: #b88b58;
+            bottom: -10px;
+            left: 25%;
+        }
+        
+        .facilities {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto 50px;
+        }
+        
+        .facility-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .facility-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .facility-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid #b88b58;
+        }
+        
+        .facility-item p {
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #444;
+            margin: 0;
+        }
+        
+        .facility-button-wrapper {
+            margin-top: 30px;
+        }
+        
+        /* Extra Facilities */
+        .facility-info-extra {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .facility-info-extra h3 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        
+        .facility-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            list-style: none;
+            padding: 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .facility-list li {
+            padding: 12px 20px;
+            background: #f5f5f5;
+            border-radius: 5px;
+            font-size: 1rem;
+            position: relative;
+            padding-left: 40px;
+        }
+        
+        .facility-list li::before {
+            content: '✓';
+            color: #b88b58;
+            font-weight: bold;
+            position: absolute;
+            left: 15px;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .facility-section h2 {
+                font-size: 2rem;
+            }
+            
+            .facilities {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">
+        <img src="image/logo.png" alt="Logo Hotel" />
+        </div>
+        <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="room.html">Rooms</a></li>
+        <li><a href="fasilitas.html" class="active">Facilities</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+        <h1>Fasilitas Terbaik untuk Kenyamanan Anda</h1>
+        <p>Nikmati layanan unggulan selama menginap bersama kami</p>
+        <a href="#fasilitas" class="facility-btn">Lihat Semua Fasilitas</a>
+        </div>
+    </section>
+
+    <!-- FACILITY SECTION -->
+    <section class="facility-section" id="fasilitas">
+        <h2>Fasilitas Unggulan</h2>
+        <div class="facilities">
+        <div class="facility-item">
+            <img src="image/Pool.png" alt="Kolam Renang Outdoor" />
+            <p>Kolam Renang Outdoor</p>
+        </div>
+        <div class="facility-item">
+            <img src="image/Resto.png" alt="Restaurant" />
+            <p>Restaurant</p>
+        </div>
+        <div class="facility-item">
+            <img src="image/Gym.png" alt="Fitness Center" />
+            <p>Fitness Center</p>
+        </div>
+        <div class="facility-item">
+            <img src="image/SPA.png" alt="SPA & Wellness" />
+            <p>SPA & Wellness</p>
+        </div>
+        <div class="facility-item">
+            <img src="image/meeting_room.png" alt="Meeting Room" />
+            <p>Meeting Room</p>
+        </div>
+        <div class="facility-item">
+            <img src="image/parkir.png" alt="Parkir Gratis" />
+            <p>Parkir Gratis</p>
+        </div>
+        </div>
+
+        <div class="facility-button-wrapper">
+        <a href="booking.html" class="facility-btn">Pesan Sekarang</a>
+        </div>
+    </section>
+    <section class="facility-info-extra">
+        <h3>Fasilitas Lainnya</h3>
+        <ul class="facility-list">
+            <li>Wi-Fi Gratis</li>
+            <li>Layanan Kamar 24 Jam</li>
+            <li>Antar-Jemput Bandara</li>
+            <li>Laundry & Dry Cleaning</li>
+            <li>Resepsionis 24 Jam</li>
+            <li>Concierge Service</li>
+            <li>Room Service</li>
+            <li>Valet Parking</li>
+        </ul>
+    </section><br><br>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column footer-logo">
+            <img src="image/Logo.png" alt="Aurelia Hotel Logo">
+            <p>Hotel bintang lima di Seminyak dengan pelayanan terbaik, lokasi strategis, dan fasilitas lengkap untuk liburan atau bisnis Anda.</p>
+            </div>
+            <div class="footer-column">
+            <h4>Kontak</h4>
+            <p>📍 Jln. Jalan Test Luar 88, Seminyak</p>
+            <p>📞 021-555-9999</p>
+            <p>📧 hello@aureliahotel.com</p>
+            </div>
+            <div class="footer-column">
+            <h4>Navigasi</h4>
+            <p><a href="index.html">Home</a></p>
+            <p><a href="room.html">Rooms</a></p>
+            <p><a href="fasilitas.html">Facilities</a></p>
+            <p><a href="gallery.html">Gallery</a></p>
+            <p><a href="contact.html">Contact</a></p>
+            <p><a href="booking.html">Booking</a></p>
+            </div>
+            <div class="footer-column">
+            <h4>Ikuti Kami</h4>
+            <p><a href="#">🌐 info@aureliahotel.com</a></p>
+            <p><a href="#">📷 Instagram</a></p>
+            <p><a href="#">📘 Facebook</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 Aurelia Hotel. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>

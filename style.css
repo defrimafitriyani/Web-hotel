@@ -1,0 +1,1130 @@
+    html {
+    scroll-behavior: smooth;
+    }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #fafafa;
+    }
+
+    /* NAVIGATION BAR */
+    header.navbar {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 10px 40px;
+        background-color: white;
+        border-bottom: 1px solid #eee;
+        position: relative;
+    }
+
+    .logo img {
+        height: 50px;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 30px;
+        list-style: none;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: #000;
+        font-weight: 500;
+    }
+
+    .nav-links a.active {
+        color: #caa030;
+        font-weight: bold;
+    }
+
+    /* HERO SECTION */
+    .hero {
+        background-image: url('image/BG.png');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        padding: 150px 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    .hero-content button {
+        background-color: #781c3e;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 6px;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 24px;
+    }
+
+    .room-detail-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('image/deluxe.png') no-repeat center center;
+    
+}
+
+    /* SECTIONS */
+    .room-section, .facility-section, .offers-section, .testimonial-section {
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .room-section h2, .facility-section h2, .offers-section h2 {
+        margin-bottom: 30px;
+    }
+
+    /* Override facilities container untuk layout dan spacing */
+    .rooms, .offers, .testimonials {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .facilities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 30px;
+    }
+
+    .facility-item {
+    width: 220px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #fff;
+    transition: transform 0.2s;
+    }
+
+    .facility-item:hover {
+    transform: scale(1.05);
+    }
+
+    .facility-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    }
+
+    .facility-item p {
+    margin-top: 10px;
+    font-weight: 500;
+    }
+    .facility-info-extra {
+    margin-top: 40px;
+    text-align: center;
+    }
+    .facility-list {
+        list-style: none;
+        padding: 0;
+    }
+    .facility-list li {
+        margin: 8px 0;
+        font-size: 16px;
+    }
+
+
+    /* KARTU KAMAR & PENAWARAN */
+    .room-card, .offer-card {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        width: 300px;
+        padding-bottom: 15px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        text-align: left;
+    }
+
+    .room-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    padding: 16px;
+    }
+
+    .room-card button {
+    display: block;
+    margin: 10px auto 12px auto;
+    padding: 8px 12px;
+    background-color: #781c3e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    }
+
+    .room-card:hover {
+    transform: scale(1.03);
+    }
+
+    .room-card img {
+    width: 100%;
+    display: block;
+    border-radius: 12px 12px 0 0;
+    }
+
+    .room-info {
+    padding: 16px;
+    background: white;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 0 0 12px 12px;
+    }
+
+    .gallery {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 kolom */
+    gap: 20px;
+    padding: 40px;
+    max-width: 1200px;
+    margin: auto;
+    }
+
+    .card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+    }
+
+    .card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    }
+
+    .card p {
+    margin: 10px;
+    font-weight: bold;
+    }
+
+    .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+    }
+
+    /* Overlay muncul saat hover */
+    .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    }
+
+    .room-card:hover .overlay {
+    opacity: 1;
+    }
+
+    /* Tombol */
+    .btn-detail {
+    background-color: #781c3e;
+    color: white;
+    padding: 0.7rem 1.5rem;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease;
+    }
+
+    .btn-detail:hover {
+    background-color: #4a148c;
+    }
+
+
+    .facility-card {
+    width: 220px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    .facility-card img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        display: block;
+    }
+
+
+    .facilities img:hover {
+        transform: scale(1.05);
+    }
+
+    /* Tombol fasilitas */
+    .facility-button-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-top: 25px;
+    }
+
+    .facility-btn {
+        display: inline-block;
+        background-color: #781c3e;
+        color: white;
+        border: none;
+        padding: 10px 28px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 16px;
+        font-weight: 600;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: auto;
+        max-width: 100%;
+    }
+
+    .facility-btn:hover {
+        background-color: #a63657;
+    }
+
+    /* Offer card */
+    .offer-card {
+        width: 250px;
+        padding: 20px;
+    }
+
+    .offer-card p {
+        font-size: 14px;
+        margin: 10px 0;
+    }
+
+    /* TESTIMONIAL */
+    .testimonial-card {
+    width: 300px;
+    padding: 20px;
+    border-radius: 16px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+    font-family: sans-serif;
+    }
+
+    .profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    }
+
+    .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 12px;
+    }
+
+    .name {
+    font-weight: bold;
+    font-size: 16px;
+    }
+
+    .stars {
+    color: #f5a623;
+    font-size: 14px;
+    }
+
+    .quote {
+    font-style: italic;
+    font-size: 14px;
+    color: #333;
+    }
+
+    @media (max-width: 600px) {
+    .testimonial-card {
+    width: 100%;
+    }
+    }
+
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+        .nav-links {
+            flex-direction: column;
+            gap: 15px;
+            position: static;
+            transform: none;
+            left: auto;
+        }
+
+        header.navbar {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .hero-content h1 {
+            font-size: 22px;
+        }
+
+        .room-card, .offer-card, .testimonial {
+            width: 90%;
+        }
+
+        /* Facilities images responsive */
+        .facilities img {
+            width: 120px;
+            height: 90px;
+        }
+
+        .facility-btn {
+            width: 90%;
+            padding: 14px 0;
+            font-size: 18px;
+        }
+    }
+
+    /* CONTACT SECTION */
+    .contact-section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: auto;
+    }
+
+    .contact-header {
+    text-align: center;
+    margin-bottom: 40px;
+    }
+
+    .contact-header h1 {
+    font-size: 32px;
+    color: #333;
+    }
+
+    .contact-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+    }
+
+    .contact-form {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: #fffaf0;
+    }
+
+    .contact-form button {
+    background-color: #781c3e;
+    color: white;
+    padding: 14px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+    }
+
+    .contact-info {
+    flex: 1;
+    min-width: 300px;
+    }
+
+    .info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    }
+
+    .info-item img {
+    width: 24px;
+    margin-right: 15px;
+    margin-top: 5px;
+    }
+
+    .map iframe {
+    width: 100%;
+    height: 400px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 40px;
+    }
+
+    /* Responsive untuk contact */
+    @media (max-width: 768px) {
+    .contact-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-form,
+    .contact-info {
+        max-width: 90%;
+    }
+    }
+
+    .contact-form h2 {
+        margin-bottom: 20px;
+        color: #781c3e;
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .contact-form label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .contact-form input[type="date"],
+    .contact-form input[type="number"],
+    .contact-form select {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #fffefc;
+        font-size: 15px;
+    }
+
+    /* VOUCHER STYLE PROMO */
+
+    .voucher-card {
+        display: flex;
+        align-items: center;
+        background-color: #fff8e7;
+        border-radius: 20px;
+        position: relative;
+        overflow: hidden;
+        width: 300px;
+        padding: 15px 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .voucher-card::before,
+    .voucher-card::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 40px;
+        background-color: #fafafa;
+        border-radius: 50%;
+        z-index: 2;
+    }
+
+    .voucher-card::before {
+        left: -10px;
+    }
+
+    .voucher-card::after {
+        right: -10px;
+    }
+
+    .voucher-icon {
+        font-size: 28px;
+        margin-right: 15px;
+        flex-shrink: 0;
+        color: #781c3e;
+    }
+
+    .voucher-content h3 {
+        font-size: 16px;
+        margin: 0;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .voucher-content p {
+        margin: 4px 0 0;
+        font-size: 14px;
+        color: #555;
+    }
+
+    body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+    background: #f9f9f9;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* NAVIGATION BAR */
+header.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px 40px;
+    background-color: white;
+    border-bottom: 1px solid #eee;
+    position: sticky; /* Ubah dari relative ke sticky */
+    top: 0; /* Jarak dari atas viewport */
+    z-index: 1000; /* Pastikan navbar selalu di atas elemen lain */
+    width: 100%;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+}
+
+.nav-links a.active {
+    font-weight: bold;
+    color: #0077cc;
+}
+
+.contact-section {
+    padding: 40px 0;
+    background: #fff;
+}
+
+.contact-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.contact-form, .contact-info {
+    flex: 1;
+    min-width: 280px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background: #0077cc;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.faq-section {
+    margin-top: 50px;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    background: #222;
+    color: #fff;
+    padding: 30px 0;
+    font-size: 14px;
+}
+
+/* Footer Style (Compact Version) */
+.footer {
+  background-color: #111;
+  color: #eee;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 2rem 1rem 1rem;
+}
+
+.footer-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: auto;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-col {
+  flex: 1 1 180px;
+  font-size: 0.85rem;
+}
+
+.footer-col h4 {
+  font-size: 1rem;
+  margin-bottom: 0.7rem;
+  color: #d4af37;
+  font-weight: 600;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 0.4rem;
+  color: #ccc;
+  font-size: 0.85rem;
+}
+
+.footer-col ul li a {
+  text-decoration: none;
+  color: #ccc;
+}
+
+.footer-col ul li a:hover {
+  color: #fff;
+}
+
+.footer-logo {
+  width: 130px;
+  margin-bottom: 0.8rem;
+  filter: brightness(1.1);
+}
+
+.footer-desc {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: #bbb;
+  max-width: 240px;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 0.8rem;
+  font-size: 0.75rem;
+  color: #888;
+  margin-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-wrapper {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-col {
+    max-width: 100%;
+  }
+
+  .footer-logo {
+    margin: auto;
+  }
+}
+
+footer {
+  background-color: #111;
+  color: #ccc;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 1.5rem 1rem 0.5rem;
+  font-size: 0.8rem;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  margin: auto;
+  padding-bottom: 1rem;
+  gap: 2rem;
+}
+
+.footer-column {
+  flex: 1 1 200px;
+  min-width: 150px;
+}
+
+.footer-column h4 {
+  color: #f3c622;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer-column p,
+.footer-column a {
+  margin: 0.2rem 0;
+  color: #ccc;
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
+.footer-column a:hover {
+  color: #f3c622;
+}
+
+.footer-logo img {
+  width: 80px;
+  margin-bottom: 0.5rem;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #333;
+  padding: 0.5rem;
+  font-size: 0.7rem;
+  color: #666;
+}
+
+.testimonial-section-enhanced {
+  background: linear-gradient(to right, #fefefe, #f7f7f7);
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.testimonial-header h2 {
+  font-size: 2rem;
+  color: #2c2c2c;
+  margin-bottom: 0.5rem;
+}
+
+.testimonial-header p {
+  color: #666;
+  margin-bottom: 3rem;
+}
+
+.testimonial-layout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.testimonial-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 1;
+  min-width: 280px;
+  max-width: 400px;
+}
+
+.testimonial-card {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  text-align: left;
+}
+
+.testimonial-card img.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+}
+
+.testimonial-card h4 {
+  font-size: 1.1rem;
+  color: #222;
+}
+
+.stars {
+  color: gold;
+  margin: 0.2rem 0;
+}
+
+.testimonial-image {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+
+.testimonial-image img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 1rem;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.1);
+}
+
+.caption {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 1rem;
+}
+
+/* Add these styles to your style.css */
+        
+        /* ROOM SECTION IMPROVEMENTS */
+        .room-section {
+            padding: 60px 5%;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        
+        .room-section h2 {
+            font-size: 25px;
+            margin-bottom: 40px;
+            color: #333;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .room-section h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, #b38a58, #e0c9a6);
+            bottom: -10px;
+            left: 25%;
+        }
+        
+        .rooms {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .room-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .room-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .room-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .room-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .room-card-content {
+            padding: 20px;
+            text-align: left;
+        }
+        
+        .room-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .room-card p {
+            color: #777;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        
+        .room-price {
+            font-size: 1.2rem;
+            color: #b38a58;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        
+        .room-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .room-feature {
+            background: #f1e9dc;
+            color: #b38a58;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .room-feature i {
+            margin-right: 5px;
+        }
+        
+        .facility-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #781c3e);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(179, 138, 88, 0.3);
+        }
+        
+        .facility-btn:hover {
+            background: linear-gradient(90deg, #a07a4a, #c4a06e);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(179, 138, 88, 0.4);
+        }
+        
+        /* HERO SECTION IMPROVEMENT */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),;
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero-content h1 {
+            font-size: 30px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease;
+        }
+        
+        /* CTA SECTION IMPROVEMENT */
+        .room-cta {
+            background: linear-gradient(135deg, #f1e9dc 0%, #e8d9c0 100%);
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .room-cta h2 {
+            font-size: 30px;
+            margin-bottom: 30px;
+            color: #333;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .room-cta::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: url('image/pattern.png') no-repeat;
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .facility-button-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Update ukuran kartu kamar */
+.room-card {
+    width: 250px; /* Diperkecil dari 300px */
+    padding-bottom: 12px;
+}
+
+/* Update grid layout untuk rooms */
+.rooms {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+/* Update ukuran gambar dalam kartu */
+.room-card img {
+    height: 180px; /* Diperkecil dari 220px */
+}
+
+/* Update padding section */
+.room-section {
+    padding: 40px 20px;
+}
+
+    @media (max-width: 1000px) {
+    .gallery {
+    grid-template-columns: repeat(3, 1fr);
+    }
+    }
+
+    @media (max-width: 600px) {
+    .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    }
+    }

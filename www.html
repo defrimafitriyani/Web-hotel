@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Add these styles to your style.css */
+        
+        /* ROOM SECTION IMPROVEMENTS */
+        .room-section {
+            padding: 60px 5%;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        
+        .room-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #333;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .room-section h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, #b38a58, #e0c9a6);
+            bottom: -10px;
+            left: 25%;
+        }
+        
+        .rooms {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .room-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .room-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .room-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .room-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .room-card-content {
+            padding: 20px;
+            text-align: left;
+        }
+        
+        .room-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .room-card p {
+            color: #777;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        
+        .room-price {
+            font-size: 1.2rem;
+            color: #b38a58;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        
+        .room-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .room-feature {
+            background: #f1e9dc;
+            color: #b38a58;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .room-feature i {
+            margin-right: 5px;
+        }
+        
+        .facility-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #b38a58, #d4b483);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(179, 138, 88, 0.3);
+        }
+        
+        .facility-btn:hover {
+            background: linear-gradient(90deg, #a07a4a, #c4a06e);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(179, 138, 88, 0.4);
+        }
+        
+        /* HERO SECTION IMPROVEMENT */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('image/room-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease;
+        }
+        
+        /* CTA SECTION IMPROVEMENT */
+        .room-cta {
+            background: linear-gradient(135deg, #f1e9dc 0%, #e8d9c0 100%);
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .room-cta h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: #333;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .room-cta::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: url('image/pattern.png') no-repeat;
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .facility-button-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .rooms {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .room-section h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION BAR (UNCHANGED) -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="image/logo.png" alt="Logo Hotel">
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="room.html" class="active">Rooms</a></li>
+            <li><a href="fasilitas.html">Facilities</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="booking.html">Booking</a></li>
+        </ul>
+    </header>
+
+    <!-- IMPROVED HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Temukan Kamar yang Nyaman untuk Setiap Perjalanan Anda</h1>
+            <a href="#daftar-kamar" class="facility-btn">Lihat Semua Kamar</a>
+        </div>
+    </section>
+
+    <!-- IMPROVED ROOMS SECTION -->
+    <section class="room-section" id="daftar-kamar">
+        <h2>Temukan Kamar yang Sempurna untuk Anda</h2>
+        <div class="rooms">
+            <div class="room-card">
+                <img src="image/Standar.png" alt="Smart Room">
+                <div class="room-card-content">
+                    <h3>Smart Room</h3>
+                    <div class="room-features">
+                        <span class="room-feature"><i class="fas fa-user"></i> 2 Orang</span>
+                        <span class="room-feature"><i class="fas fa-ruler-combined"></i> 28m²</span>
+                        <span class="room-feature"><i class="fas fa-wifi"></i> WiFi</span>
+                    </div>
+                    <p>Kamar modern dengan teknologi canggih untuk kenyamanan maksimal.</p>
+                    <div class="room-price">Rp 700.000,- / Malam</div>
+                    <a href="room-detail.html?room=smart" class="facility-btn">Lihat Detail</a>
+                </div>
+            </div>
+            
+            <div class="room-card">
+                <img src="image/Deluxe.png" alt="Deluxe Room">
+                <div class="room-card-content">
+                    <h3>Deluxe Room</h3>
+                    <div class="room-features">
+                        <span class="room-feature"><i class="fas fa-user"></i> 2 Orang</span>
+                        <span class="room-feature"><i class="fas fa-ruler-combined"></i> 35m²</span>
+                        <span class="room-feature"><i class="fas fa-wifi"></i> WiFi</span>
+                    </div>
+                    <p>Kamar luas dengan dekorasi elegan dan fasilitas premium.</p>
+                    <div class="room-price">Rp 900.000,- / Malam</div>
+                    <a href="room-detail.html?room=deluxe" class="facility-btn">Lihat Detail</a>
+                </div>
+            </div>
+            
+            <div class="room-card">
+                <img src="image/Suite.png" alt="Suite Room">
+                <div class="room-card-content">
+                    <h3>Suite Room</h3>
+                    <div class="room-features">
+                        <span class="room-feature"><i class="fas fa-user"></i> 2-3 Orang</span>
+                        <span class="room-feature"><i class="fas fa-ruler-combined"></i> 50m²</span>
+                        <span class="room-feature"><i class="fas fa-wifi"></i> WiFi</span>
+                    </div>
+                    <p>Kamar mewah dengan ruang tamu terpisah dan pemandangan spektakuler.</p>
+                    <div class="room-price">Rp 1.200.000,- / Malam</div>
+                    <a href="room-detail.html?room=suite" class="facility-btn">Lihat Detail</a>
+                </div>
+            </div>
+            
+            <div class="room-card">
+                <img src="image/Presidential.png" alt="Presidential Room">
+                <div class="room-card-content">
+                    <h3>Presidential Room</h3>
+                    <div class="room-features">
+                        <span class="room-feature"><i class="fas fa-user"></i> 2-4 Orang</span>
+                        <span class="room-feature"><i class="fas fa-ruler-combined"></i> 80m²</span>
+                        <span class="room-feature"><i class="fas fa-wifi"></i> WiFi</span>
+                    </div>
+                    <p>Akomodasi paling eksklusif dengan layanan butler pribadi.</p>
+                    <div class="room-price">Rp 1.800.000,- / Malam</div>
+                    <a href="room-detail.html?room=presidential" class="facility-btn">Lihat Detail</a>
+                </div>
+            </div>
+            
+            <div class="room-card">
+                <img src="image/Superior.png" alt="Superior Room">
+                <div class="room-card-content">
+                    <h3>Superior Room</h3>
+                    <div class="room-features">
+                        <span class="room-feature"><i class="fas fa-user"></i> 2 Orang</span>
+                        <span class="room-feature"><i class="fas fa-ruler-combined"></i> 32m²</span>
+                        <span class="room-feature"><i class="fas fa-wifi"></i> WiFi</span>
+                    </div>
+                    <p>Kamar nyaman dengan tempat tidur premium dan fasilitas lengkap.</p>
+                    <div class="room-price">Rp 800.000,- / Malam</div>
+                    <a href="room-detail.html?room=superior" class="facility-btn">Lihat Detail</a>
+                </div>
+            </div>
+            
+            <div class="room-card">
+                <img src="image/family.png" alt="Family Room">
+                <div class="room-card-content">
+                    <h3>Family Room</h3>
+                    <div class="room-features">
+                        <span class="room-feature"><i class="fas fa-user"></i> 4 Orang</span>
+                        <span class="room-feature"><i class="fas fa-ruler-combined"></i> 45m²</span>
+                        <span class="room-feature"><i class="fas fa-wifi"></i> WiFi</span>
+                    </div>
+                    <p>Kamar luas dengan tempat tidur tambahan untuk keluarga.</p>
+                    <div class="room-price">Rp 1.300.000,- / Malam</div>
+                    <a href="room-detail.html?room=family" class="facility-btn">Lihat Detail</a>
+                </div>
+            </div>
+            
+            <div class="room-card">
+                <img src="image/Connecting.png" alt="Connecting Room">
+                <div class="room-card-content">
+                    <h3>Connecting Room</h3>
+                    <div class="room-features">
+                        <span class="room-feature"><i class="fas fa-user"></i> 4-6 Orang</span>
+                        <span class="room-feature"><i class="fas fa-ruler-combined"></i> 60m²</span>
+                        <span class="room-feature"><i class="fas fa-wifi"></i> WiFi</span>
+                    </div>
+                    <p>Dua kamar terhubung dengan pintu internal untuk kelompok.</p>
+                    <div class="room-price">Rp 1.400.000,- / Malam</div>
+                    <a href="room-detail.html?room=connecting" class="facility-btn">Lihat Detail</a>
+                </div>
+            </div>
+            
+            <div class="room-card">
+                <img src="image/Twin.png" alt="Twin Room">
+                <div class="room-card-content">
+                    <h3>Twin Room</h3>
+                    <div class="room-features">
+                        <span class="room-feature"><i class="fas fa-user"></i> 2 Orang</span>
+                        <span class="room-feature"><i class="fas fa-ruler-combined"></i> 30m²</span>
+                        <span class="room-feature"><i class="fas fa-wifi"></i> WiFi</span>
+                    </div>
+                    <p>Kamar dengan dua tempat tidur single untuk teman atau kolega.</p>
+                    <div class="room-price">Rp 850.000,- / Malam</div>
+                    <a href="room-detail.html?room=twin" class="facility-btn">Lihat Detail</a>
+                </div>
+            </div>
+            
+            <div class="room-card">
+                <img src="image/Accesible.png" alt="Accesible Room">
+                <div class="room-card-content">
+                    <h3>Accesible Room</h3>
+                    <div class="room-features">
+                        <span class="room-feature"><i class="fas fa-user"></i> 2 Orang</span>
+                        <span class="room-feature"><i class="fas fa-ruler-combined"></i> 35m²</span>
+                        <span class="room-feature"><i class="fas fa-wheelchair"></i> Aksesibel</span>
+                    </div>
+                    <p>Kamar yang dirancang khusus untuk tamu dengan kebutuhan khusus.</p>
+                    <div class="room-price">Rp 750.000,- / Malam</div>
+                    <a href="room-detail.html?room=accesible" class="facility-btn">Lihat Detail</a>
+                </div>
+            </div>
+            
+            <div class="room-card">
+                <img src="image/wellness.png" alt="Wellness Room">
+                <div class="room-card-content">
+                    <h3>Wellness Room</h3>
+                    <div class="room-features">
+                        <span class="room-feature"><i class="fas fa-user"></i> 2 Orang</span>
+                        <span class="room-feature"><i class="fas fa-ruler-combined"></i> 40m²</span>
+                        <span class="room-feature"><i class="fas fa-spa"></i> Wellness</span>
+                    </div>
+                    <p>Kamar dengan fasilitas wellness premium untuk relaksasi maksimal.</p>
+                    <div class="room-price">Rp 1.600.000,- / Malam</div>
+                    <a href="room-detail.html?room=wellness" class="facility-btn">Lihat Detail</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPROVED CTA SECTION -->
+    <section class="room-cta">
+        <h2>Siap Memesan Kamar Anda?</h2>
+        <p style="margin-bottom: 20px; color: #555;">Pesan sekarang dan dapatkan penawaran spesial untuk pemesanan online!</p>
+        <div class="facility-button-wrapper">
+            <a href="booking.html" class="facility-btn">Pesan Sekarang</a>
+        </div>
+    </section>
+
+    <!-- FOOTER (UNCHANGED) -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column footer-logo">
+                <img src="image/Logo.png" alt="Aurelia Hotel Logo">
+                <p>Hotel bintang lima di Seminyak dengan pelayanan terbaik, lokasi strategis, dan fasilitas lengkap untuk liburan atau bisnis Anda.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Kontak</h4>
+                <p>📍 Jln. Jalan Test Luar 88, Seminyak</p>
+                <p>📞 021-555-9999</p>
+                <p>📧 hello@aureliahotel.com</p>
+            </div>
+            <div class="footer-column">
+                <h4>Navigasi</h4>
+                <p><a href="index.html">Home</a></p>
+                <p><a href="room.html">Rooms</a></p>
+                <p><a href="fasilitas.html">Facilities</a></p>
+                <p><a href="gallery.html">Gallery</a></p>
+                <p><a href="contact.html">Contact</a></p>
+                <p><a href="booking.html">Booking</a></p>
+            </div>
+            <div class="footer-column">
+                <h4>Ikuti Kami</h4>
+                <p><a href="#">🌐 info@aureliahotel.com</a></p>
+                <p><a href="#">📷 Instagram</a></p>
+                <p><a href="#">📘 Facebook</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 Aurelia Hotel. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>

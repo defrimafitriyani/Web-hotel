@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Kamar - Aurelia Hotel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .room-detail-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),img src('image/presedential.png') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .room-detail-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            animation: fadeIn 1s ease-in;
+        }
+        
+        .room-detail-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .room-detail-content {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+        
+        .room-image-main {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .room-image-main img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .room-image-main img:hover {
+            transform: scale(1.02);
+        }
+        
+        .room-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .room-price {
+            font-size: 1.8rem;
+            color: #b38b6d;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+        
+        .room-description {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        
+        .room-features {
+            margin: 40px 0;
+        }
+        
+        .room-features h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .feature-icon {
+            color: #b38b6d;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .booking-btn {
+            background-color: #b38b6d;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .booking-btn:hover {
+            background-color: #781c3e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .room-gallery {
+            margin: 60px 0;
+        }
+        
+        .room-gallery h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: #781c3e;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 200px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .similar-rooms {
+            margin: 80px 0;
+        }
+        
+        .similar-rooms h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: #781c3e;
+        }
+        
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .room-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .room-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .room-card-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .room-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .room-card:hover .room-card-img img {
+            transform: scale(1.1);
+        }
+        
+        .room-card-info {
+            padding: 20px;
+        }
+        
+        .room-card-info h3 {
+            margin-bottom: 10px;
+            color: #781c3e;
+        }
+        
+        .room-card-price {
+            color: #b38b6d;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+        
+        .room-card-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 10px;
+            background-color: #f5f5f5;
+            color: #333;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .room-card-btn:hover {
+            background-color: #b38b6d;
+            color: white;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            .room-detail-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .room-price {
+                font-size: 1.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar (same as your original code) -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="image/logo.png" alt="Logo Hotel">
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="room.html" class="active">Rooms</a></li>
+            <li><a href="fasilitas.html">Facilities</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="booking.html">Booking</a></li>
+        </ul>
+    </header>
+
+    <!-- Room Detail Hero -->
+    <section class="room-detail-hero">
+        <h1 id="room-title">Smart Room</h1>
+        <p>Kenyamanan dan kemewahan dalam setiap detail</p>
+    </section>
+
+    <!-- Room Detail Content -->
+    <div class="room-detail-container">
+        <div class="room-detail-content">
+            <div class="room-image-main">
+                <img src="image/Standar.png" alt="Smart Room" id="room-main-image">
+            </div>
+            <div class="room-info">
+                <h2 id="room-title-2">Smart Room</h2>
+                <div class="room-price" id="room-price">Rp 700.000,- / Malam</div>
+                <p class="room-description" id="room-description">
+                    Kamar Smart Room kami dirancang untuk kenyamanan maksimal dengan sentuhan modern. 
+                    Dengan luas 28m², kamar ini cocok untuk pelancong solo atau pasangan. 
+                    Nikmati tempat tidur king-size premium dengan linen berkualitas tinggi, 
+                    kamar mandi modern dengan rain shower, serta teknologi canggih yang memungkinkan 
+                    Anda mengontrol pencahayaan, suhu, dan hiburan melalui smartphone Anda.
+                </p>
+                <a href="booking.html" class="booking-btn">Pesan Sekarang</a>
+                
+                <div class="room-features">
+                    <h3>Fasilitas Kamar</h3>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <i class="fas fa-wifi feature-icon"></i>
+                            <span>WiFi Gratis</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-tv feature-icon"></i>
+                            <span>TV LED 40"</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-snowflake feature-icon"></i>
+                            <span>AC</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-coffee feature-icon"></i>
+                            <span>Minibar</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-utensils feature-icon"></i>
+                            <span>Sarapan Gratis</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-lock feature-icon"></i>
+                            <span>Brankas</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-shower feature-icon"></i>
+                            <span>Rain Shower</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-phone feature-icon"></i>
+                            <span>Telepon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Room Gallery (hidden if no additional images) -->
+        <div class="room-gallery" id="room-gallery" style="display: none;">
+            <h2>Galeri Kamar</h2>
+            <div class="gallery-grid">
+                <!-- Images will be added dynamically -->
+            </div>
+        </div>
+
+        <!-- Similar Rooms -->
+        <div class="similar-rooms">
+            <h2>Kamar Lainnya</h2>
+            <div class="rooms-grid">
+                <div class="room-card">
+                    <div class="room-card-img">
+                        <img src="image/Deluxe.png" alt="Deluxe Room">
+                    </div>
+                    <div class="room-card-info">
+                        <h3>Deluxe Room</h3>
+                        <div class="room-card-price">Rp 900.000,- / Malam</div>
+                        <p>Kamar lebih luas dengan balkon pribadi dan fasilitas premium.</p>
+                        <a href="room-detail.html?room=deluxe" class="room-card-btn">Lihat Detail</a>
+                    </div>
+                </div>
+                <div class="room-card">
+                    <div class="room-card-img">
+                        <img src="image/Suite.png" alt="Suite Room">
+                    </div>
+                    <div class="room-card-info">
+                        <h3>Suite Room</h3>
+                        <div class="room-card-price">Rp 1.200.000,- / Malam</div>
+                        <p>Suite elegan dengan ruang tamu terpisah dan fasilitas mewah.</p>
+                        <a href="room-detail.html?room=suite" class="room-card-btn">Lihat Detail</a>
+                    </div>
+                </div>
+                <div class="room-card">
+                    <div class="room-card-img">
+                        <img src="image/family.png" alt="Family Room">
+                    </div>
+                    <div class="room-card-info">
+                        <h3>Family Room</h3>
+                        <div class="room-card-price">Rp 1.300.000,- / Malam</div>
+                        <p>Kamar luas untuk keluarga dengan tempat tidur tambahan.</p>
+                        <a href="room-detail.html?room=family" class="room-card-btn">Lihat Detail</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (same as your original code) -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column footer-logo">
+                <img src="image/Logo.png" alt="Aurelia Hotel Logo">
+                <p>Hotel bintang lima di Seminyak dengan pelayanan terbaik, lokasi strategis, dan fasilitas lengkap untuk liburan atau bisnis Anda.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Kontak</h4>
+                <p>📍 Jln. Jalan Test Luar 88, Seminyak</p>
+                <p>📞 021-555-9999</p>
+                <p>📧 hello@aureliahotel.com</p>
+            </div>
+            <div class="footer-column">
+                <h4>Navigasi</h4>
+                <p><a href="index.html">Home</a></p>
+                <p><a href="room.html">Rooms</a></p>
+                <p><a href="fasilitas.html">Facilities</a></p>
+                <p><a href="gallery.html">Gallery</a></p>
+                <p><a href="contact.html">Contact</a></p>
+                <p><a href="booking.html">Booking</a></p>
+            </div>
+            <div class="footer-column">
+                <h4>Ikuti Kami</h4>
+                <p><a href="#">🌐 info@aureliahotel.com</a></p>
+                <p><a href="#">📷 Instagram</a></p>
+                <p><a href="#">📘 Facebook</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 Aurelia Hotel. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        const roomData = {
+            smart: {
+                title: "Smart Room",
+                price: "Rp 700.000,- / Malam",
+                image: "image/Standar.png",
+                description: "Kamar Smart Room kami dirancang untuk kenyamanan maksimal dengan sentuhan modern. Dengan luas 28m², kamar ini cocok untuk pelancong solo atau pasangan. Nikmati tempat tidur king-size premium dengan linen berkualitas tinggi, kamar mandi modern dengan rain shower, serta teknologi canggih yang memungkinkan Anda mengontrol pencahayaan, suhu, dan hiburan melalui smartphone Anda.",
+                features: [
+                    "WiFi Gratis", "TV LED 40\"", "AC", "Minibar", 
+                    "Sarapan Gratis", "Brankas", "Rain Shower", "Telepon"
+                ],
+                gallery: []
+            },
+            deluxe: {
+                title: "Deluxe Room",
+                price: "Rp 900.000,- / Malam",
+                image: "image/Deluxe.png",
+                description: "Kamar Deluxe kami menawarkan pengalaman menginap yang lebih mewah dengan luas 35m². Dilengkapi dengan balkon pribadi yang menghadap ke kolam renang atau taman, tempat tidur king-size premium, kamar mandi marmer dengan bathtub dan shower terpisah. Nikmati juga fasilitas lengkap termasuk minibar premium dan akses ke lounge eksklusif.",
+                features: [
+                    "Balkon Pribadi", "TV LED 42\"", "AC", "Minibar Premium", 
+                    "Sarapan Gratis", "Brankas", "Bathtub", "Telepon", 
+                    "Akses Lounge", "Coffee Maker"
+                ],
+                gallery: []
+            },
+            suite: {
+                title: "Suite Room",
+                price: "Rp 1.200.000,- / Malam",
+                image: "image/Suite.png",
+                description: "Suite Room kami adalah akomodasi mewah dengan ruang tamu terpisah dan kamar tidur yang luas (total 50m²). Dilengkapi dengan furnitur desainer, kamar mandi mewah dengan bathtub whirlpool, dan pemandangan kota yang spektakuler. Tamu suite mendapatkan akses ke klub lounge dengan makanan dan minuman gratis sepanjang hari.",
+                features: [
+                    "Ruang Tamu Terpisah", "TV LED 55\"", "AC", "Minibar Premium", 
+                    "Sarapan Gratis", "Brankas", "Bathtub Whirlpool", "Telepon", 
+                    "Akses Club Lounge", "Nespresso Machine", "Pemandangan Kota"
+                ],
+                gallery: []
+            },
+            presidential: {
+                title: "Presidential Room",
+                price: "Rp 1.800.000,- / Malam",
+                image: "image/Presidential.png",
+                description: "Pengalaman menginap terbaik dengan Presidential Suite seluas 80m². Menampilkan ruang tamu besar, ruang makan pribadi, kamar tidur mewah dengan walk-in closet, dan kamar mandi mewah dengan sauna pribadi. Dilayani oleh butler pribadi 24 jam, termasuk transfer bandara dengan limousine dan akses ke semua fasilitas premium hotel.",
+                features: [
+                    "Ruang Tamu Besar", "Ruang Makan", "TV LED 65\"", "AC", 
+                    "Minibar Premium Lengkap", "Sarapan Gratis", "Brankas Besar", 
+                    "Bathtub & Sauna Pribadi", "Butler 24 Jam", "Mesin Espresso", 
+                    "Walk-in Closet", "Transfer Limousine"
+                ],
+                gallery: []
+            },
+            superior: {
+                title: "Superior Room",
+                price: "Rp 800.000,- / Malam",
+                image: "image/Superior.png",
+                description: "Superior Room kami menawarkan kenyamanan dengan luas 30m². Dilengkapi dengan tempat tidur king-size atau twin bed, kamar mandi modern, dan area kerja yang nyaman. Pilihan sempurna untuk perjalanan bisnis atau liburan dengan fasilitas lengkap dan desain kontemporer yang elegan.",
+                features: [
+                    "WiFi Gratis", "TV LED 40\"", "AC", "Minibar", 
+                    "Sarapan Gratis", "Brankas", "Shower", "Telepon", 
+                    "Meja Kerja", "Setrika & Papan Setrika"
+                ],
+                gallery: []
+            },
+            family: {
+                title: "Family Room",
+                price: "Rp 1.300.000,- / Malam",
+                image: "image/family.png",
+                description: "Family Room kami dirancang khusus untuk keluarga dengan luas 45m². Terdiri dari kamar tidur utama dengan tempat tidur king-size dan ruang terpisah dengan dua tempat tidur single. Dilengkapi dengan area bermain anak, kamar mandi keluarga, dan fasilitas khusus anak termasuk welcome kit untuk anak-anak.",
+                features: [
+                    "2 Ruang Tidur", "TV LED 50\"", "AC", "Minibar", 
+                    "Sarapan Gratis Keluarga", "Brankas", "Bathtub & Shower", 
+                    "Telepon", "Area Bermain Anak", "Welcome Kit Anak", 
+                    "Kursi Bayi (on request)"
+                ],
+                gallery: []
+            },
+            connecting: {
+                title: "Connecting Room",
+                price: "Rp 1.400.000,- / Malam",
+                image: "image/Connecting.png",
+                description: "Kamar Connecting ideal untuk keluarga atau kelompok dengan dua kamar terhubung melalui pintu internal. Setiap kamar memiliki kamar mandi sendiri dan dapat dipesan sebagai kamar terpisah atau sebagai satu unit. Total luas 50m² dengan fasilitas lengkap di kedua kamar.",
+                features: [
+                    "2 Kamar Terhubung", "2 Kamar Mandi", "TV LED 40\" di Setiap Kamar", 
+                    "AC", "Minibar", "Sarapan Gratis", "Brankas", 
+                    "Shower", "Telepon", "Fleksibel sebagai 2 Kamar"
+                ],
+                gallery: []
+            },
+            twin: {
+                title: "Twin Room",
+                price: "Rp 850.000,- / Malam",
+                image: "image/Twin.png",
+                description: "Twin Room kami cocok untuk teman atau rekan kerja yang bepergian bersama. Dengan dua tempat tidur single premium dan luas 30m², kamar ini menawarkan kenyamanan dengan fasilitas lengkap termasuk area kerja dan kamar mandi modern.",
+                features: [
+                    "2 Tempat Tidur Single", "WiFi Gratis", "TV LED 40\"", "AC", 
+                    "Minibar", "Sarapan Gratis", "Brankas", "Shower", 
+                    "Telepon", "Meja Kerja"
+                ],
+                gallery: []
+            },
+            accesible: {
+                title: "Accessible Room",
+                price: "Rp 750.000,- / Malam",
+                image: "image/Accesible.png",
+                description: "Kamar Aksesibel kami dirancang khusus untuk tamu dengan kebutuhan khusus. Dengan luas 32m², kamar ini memiliki pintu lebar, kamar mandi dilengkapi pegangan, shower kursi, dan fasilitas lainnya yang memudahkan mobilitas tanpa mengurangi kenyamanan.",
+                features: [
+                    "Akses Kursi Roda", "Pintu Lebar", "Kamar Mandi Aksesibel", 
+                    "Shower Kursi", "Pegangan Darurat", "TV LED 40\"", "AC", 
+                    "Minibar", "Sarapan Gratis", "Brankas", "Telepon"
+                ],
+                gallery: []
+            },
+            wellness: {
+                title: "Wellness Room",
+                price: "Rp 1.600.000,- / Malam",
+                image: "image/wellness.png",
+                description: "Wellness Room kami dirancang untuk tamu yang peduli dengan kesehatan dan kebugaran. Kamar seluas 40m² ini dilengkapi dengan area fitness pribadi, peralatan yoga, minibar sehat, dan akses gratis ke spa. Termasuk konsultasi dengan ahli gizi dan personal trainer.",
+                features: [
+                    "Area Fitness Pribadi", "Peralatan Yoga", "Minibar Sehat", 
+                    "Akses Spa Gratis", "TV LED 50\"", "AC", "Sarapan Sehat", 
+                    "Brankas", "Shower Uap", "Telepon", "Konsultasi Ahli Gizi"
+                ],
+                gallery: []
+            }
+        };
+
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        function loadRoomDetails() {
+            const roomType = getQueryParam('room');
+            const detailContainer = document.getElementById('room-detail-container');
+            
+            if (roomType && roomData[roomType]) {
+                const data = roomData[roomType];
+                
+                // Update hero section
+                document.getElementById('room-title').textContent = data.title;
+                
+                // Update main content
+                document.getElementById('room-title-2').textContent = data.title;
+                document.getElementById('room-price').textContent = data.price;
+                document.getElementById('room-main-image').src = data.image;
+                document.getElementById('room-main-image').alt = data.title;
+                document.getElementById('room-description').textContent = data.description;
+                
+                // Update features
+                const featuresGrid = document.querySelector('.features-grid');
+                featuresGrid.innerHTML = '';
+                data.features.forEach(feature => {
+                    const iconClass = getIconForFeature(feature);
+                    featuresGrid.innerHTML += `
+                        <div class="feature-item">
+                            <i class="fas ${iconClass} feature-icon"></i>
+                            <span>${feature}</span>
+                        </div>
+                    `;
+                });
+                
+                // Update gallery if available
+                if (data.gallery && data.gallery.length > 0) {
+                    const gallerySection = document.getElementById('room-gallery');
+                    const galleryGrid = gallerySection.querySelector('.gallery-grid');
+                    galleryGrid.innerHTML = '';
+                    
+                    data.gallery.forEach(image => {
+                        galleryGrid.innerHTML += `
+                            <div class="gallery-item">
+                                <img src="${image}" alt="${data.title}">
+                            </div>
+                        `;
+                    });
+                    
+                    gallerySection.style.display = 'block';
+                }
+            } else {
+                // Handle case when room not found
+                detailContainer.innerHTML = `
+                    <div class="error-message">
+                        <h2>Maaf, detail kamar tidak ditemukan.</h2>
+                        <p><a href="room.html" class="booking-btn">Kembali ke Daftar Kamar</a></p>
+                    </div>
+                `;
+            }
+        }
+        
+        function getIconForFeature(feature) {
+            const iconMap = {
+                'WiFi': 'fa-wifi',
+                'TV': 'fa-tv',
+                'AC': 'fa-snowflake',
+                'Minibar': 'fa-glass-martini-alt',
+                'Sarapan': 'fa-utensils',
+                'Brankas': 'fa-lock',
+                'Shower': 'fa-shower',
+                'Telepon': 'fa-phone',
+                'Balkon': 'fa-door-open',
+                'Bathtub': 'fa-bath',
+                'Lounge': 'fa-couch',
+                'Coffee': 'fa-coffee',
+                'Pemandangan': 'fa-binoculars',
+                'Ruang Tamu': 'fa-home',
+                'Ruang Makan': 'fa-utensils',
+                'Butler': 'fa-bell-concierge',
+                'Limousine': 'fa-car',
+                'Closet': 'fa-tshirt',
+                'Keluarga': 'fa-users',
+                'Anak': 'fa-child',
+                'Aksesibel': 'fa-wheelchair',
+                'Fitness': 'fa-dumbbell',
+                'Yoga': 'fa-spa',
+                'Sehat': 'fa-heartbeat',
+                'Spa': 'fa-spa'
+            };
+            
+            for (const [key, value] of Object.entries(iconMap)) {
+                if (feature.toLowerCase().includes(key.toLowerCase())) {
+                    return value;
+                }
+            }
+            
+            return 'fa-check-circle';
+        }
+
+        // Load room details when page loads
+        window.onload = loadRoomDetails;
+    </script>
+</body>
+</html>

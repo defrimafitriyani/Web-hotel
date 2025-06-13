@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Kontak - Aurelia Hotel</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Contact Page Specific Styles */
+        .contact-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .contact-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .contact-header h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .contact-header p {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+        }
+        
+        .contact-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        .facility-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            align-self: flex-start;
+        }
+        
+        .facility-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        .contact-info p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: #34495e;
+        }
+        
+        .contact-info strong {
+            color: #2c3e50;
+        }
+        
+        .faq-section {
+            margin-bottom: 60px;
+        }
+        
+        .faq-section h2 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .faq-item {
+            background-color: #f9f9f9;
+            padding: 20px 25px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            transition: transform 0.3s;
+        }
+        
+        .faq-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .faq-item h4 {
+            font-size: 1.2rem;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+        
+        .faq-item p {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+        
+        .map {
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-wrapper {
+                flex-direction: column;
+            }
+            
+            .contact-header h1 {
+                font-size: 2rem;
+            }
+            
+            .faq-section h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="image/Logo.png" alt="Aurelia Hotel Logo" />
+        </div>
+        <nav class="nav-center">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="room.html">Rooms</a></li>
+                <li><a href="fasilitas.html">Facilities</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-header">
+            <h1>Hubungi Kami</h1>
+            <p>Kami siap membantu Anda untuk informasi lebih lanjut.</p>
+        </div>
+
+        <div class="contact-wrapper">
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <form id="contactForm" onsubmit="return validateForm()">
+                    <input type="text" id="name" placeholder="Nama Lengkap" required />
+                    <input type="email" id="email" placeholder="Alamat Email" required />
+                    <input type="tel" id="phone" placeholder="Nomor Telepon (maks 11 angka)" required maxlength="11" pattern="[0-9]{11}" title="Masukkan 11 digit nomor telepon"/>
+                    
+                    <textarea id="message" rows="5" placeholder="Pesan atau pertanyaan Anda"></textarea>
+
+                    <button type="submit" class="facility-btn">Kirim Pesan</button>
+                </form>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <h3>Informasi Kontak</h3>
+                <p><strong>Alamat:</strong><br>Jl. Sudirman No.123, Jakarta</p>
+                <p><strong>Telepon:</strong><br>021-555-78900</p>
+                <p><strong>Email:</strong><br>info@aureliahotel.com</p>
+                <p><strong>Jam Operasional:</strong><br>Senin - Minggu, 24 Jam</p>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2>Pertanyaan yang Sering Diajukan (FAQ)</h2>
+            <div class="faq-item">
+                <h4>✔️ Jam check-in dan check-out?</h4>
+                <p>Check-in dimulai pukul 14.00 WIB dan check-out maksimal pukul 12.00 WIB. Early check-in dan late check-out tersedia tergantung ketersediaan kamar.</p>
+            </div>
+            <div class="faq-item">
+                <h4>✔️ Apakah tersedia sarapan gratis?</h4>
+                <p>Ya, semua tamu yang menginap di kamar Deluxe ke atas mendapatkan sarapan gratis untuk 2 orang. Sarapan disajikan dari pukul 6.00 hingga 10.30 WIB.</p>
+            </div>
+            <div class="faq-item">
+                <h4>✔️ Apakah bisa reschedule atau refund?</h4>
+                <p>Reschedule dan refund bisa dilakukan sesuai dengan ketentuan pemesanan masing-masing kamar. Untuk pemesanan non-refundable, tidak dapat dilakukan refund tetapi mungkin dapat direschedule dengan biaya administrasi.</p>
+            </div>
+        </div>
+
+        <!-- Map -->
+        <div class="map">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.82256131476919!3d-6.194741395493371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f42d9c5f3f3d%3A0x3027a76e352b3b0!2sJl.%20Sudirman%2C%20Jakarta!5e0!3m2!1sen!2sid!4v1621234567890!5m2!1sen!2sid"
+                frameborder="0"
+                style="border:0; width:100%; height:300px;"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column footer-logo">
+                <img src="image/Logo.png" alt="Aurelia Hotel Logo">
+                <p>Hotel bintang lima di Seminyak dengan pelayanan terbaik, lokasi strategis, dan fasilitas lengkap untuk liburan atau bisnis Anda.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Kontak</h4>
+                <p>📍 Jln. Jalan Test Luar 88, Seminyak</p>
+                <p>📞 021-555-9999</p>
+                <p>📧 hello@aureliahotel.com</p>
+            </div>
+            <div class="footer-column">
+                <h4>Navigasi</h4>
+                <p><a href="index.html">Home</a></p>
+                <p><a href="room.html">Rooms</a></p>
+                <p><a href="fasilitas.html">Facilities</a></p>
+                <p><a href="gallery.html">Gallery</a></p>
+                <p><a href="contact.html">Contact</a></p>
+                <p><a href="booking.html">Booking</a></p>
+            </div>
+            <div class="footer-column">
+                <h4>Ikuti Kami</h4>
+                <p><a href="#">🌐 info@aureliahotel.com</a></p>
+                <p><a href="#">📷 Instagram</a></p>
+                <p><a href="#">📘 Facebook</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 Aurelia Hotel. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        function validateForm() {
+            // Validasi nomor HP (13 digit)
+            const phone = document.getElementById('phone').value;
+            if (phone.length !== 13 || isNaN(phone)) {
+                alert('Nomor telepon harus 13 digit angka');
+                return false;
+            }
+            
+            // Validasi email harus gmail.com
+            const email = document.getElementById('email').value;
+            if (!email.includes('@gmail.com')) {
+                alert('Email harus menggunakan domain @gmail.com');
+                return false;
+            }
+            
+            // Jika semua validasi terpenuhi
+            alert('Pesan Anda telah terkirim!');
+            return true;
+        }
+    </script>
+
+</body>
+</html>

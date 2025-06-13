@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Booking Kamar - Aurelia Hotel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Additional styles for enhancement */
+        .booking-hero {
+            background: url('image/hotel-lobby.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 150px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .booking-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+        
+        .booking-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .booking-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            animation: fadeIn 1s ease-in;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        }
+        
+        .booking-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-btn {
+            background-color: #b38b6d;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        
+        .hero-btn:hover {
+            background-color: #9a755a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Rest of your existing CSS remains the same */
+        .contact-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .contact-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .contact-header h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .contact-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .contact-form {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #b38b6d;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(179, 139, 109, 0.2);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .full-width {
+            grid-column: span 2;
+        }
+        
+        .facility-btn {
+            background-color: #b38b6d;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .facility-btn:hover {
+            background-color: #9a755a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .benefits-section {
+            background-color: #f9f5f1;
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .benefits-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .benefits-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 40px;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: #b38b6d;
+            margin-bottom: 20px;
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #290202;
+        }
+        
+        .benefit-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .testimonial-section {
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .testimonial-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 40px;
+        }
+        
+        .testimonial-slider {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonial-slide {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            margin: 0 20px;
+        }
+        
+        .testimonial-text {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .full-width {
+                grid-column: span 1;
+            }
+            
+            .booking-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .booking-hero {
+                padding: 100px 20px;
+            }
+            
+            .contact-form {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="image/Logo.png" alt="Aurelia Hotel Logo" />
+        </div>
+        <nav class="nav-center">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="room.html">Rooms</a></li>
+                <li><a href="fasilitas.html">Facilities</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    
+
+        <!-- Booking Form -->
+    <section class="contact-section" id="booking-form">
+        <div class="contact-header">
+            <h1>Formulir Pemesanan</h1>
+            <p>Silakan isi detail berikut untuk memesan kamar. Tim kami akan segera menghubungi Anda untuk konfirmasi.</p>
+        </div>
+
+        <div class="contact-form">
+            <form>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <input type="text" name="nama" placeholder="Nama Lengkap" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Alamat Email" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="telepon" placeholder="Nomor Telepon" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="guests">Jumlah Tamu:</label>
+                        <input type="number" name="guests" min="1" max="10" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="checkin">Tanggal Check-in:</label>
+                        <input type="date" name="checkin" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="checkout">Tanggal Check-out:</label>
+                        <input type="date" name="checkout" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="room1">Tipe Kamar 1:</label>
+                        <select name="room1" required>
+                            <option value="">-- Pilih Tipe Kamar --</option>
+                            <option value="smart">Smart Room</option>
+                            <option value="deluxe">Deluxe Room</option>
+                            <option value="suite">Suite Room</option>
+                            <option value="presidential">Presidential Room</option>
+                            <option value="superior">Superior Room</option>
+                            <option value="family">Family Room</option>
+                            <option value="connecting">Connecting Room</option>
+                            <option value="twin">Twin Room</option>
+                            <option value="accesible">Accesible Room</option>
+                            <option value="wellness">Wellness Room</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="room2">Tipe Kamar 2 (opsional):</label>
+                        <select name="room2">
+                            <option value="">-- Tidak memesan kamar kedua --</option>
+                            <option value="smart">Smart Room</option>
+                            <option value="deluxe">Deluxe Room</option>
+                            <option value="suite">Suite Room</option>
+                            <option value="presidential">Presidential Room</option>
+                            <option value="superior">Superior Room</option>
+                            <option value="family">Family Room</option>
+                            <option value="connecting">Connecting Room</option>
+                            <option value="twin">Twin Room</option>
+                            <option value="accesible">Accesible Room</option>
+                            <option value="wellness">Wellness Room</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="pesan">Permintaan Khusus:</label>
+                        <textarea name="pesan" rows="4" placeholder="Pesan Tambahan (opsional)"></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <button type="submit" class="facility-btn">
+                            <i class="fas fa-calendar-check"></i> Pesan Sekarang
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- Testimonial Section -->
+    <section class="testimonial-section">
+        <div class="testimonial-container">
+            <h2 class="testimonial-title">Apa Kata Tamu Kami</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial-slide">
+                    <p class="testimonial-text">"Pengalaman menginap yang luar biasa! Proses booking sangat mudah melalui website mereka. Staf sangat ramah dan kamarnya bersih dengan pemandangan yang indah."</p>
+                    <p class="testimonial-author">- Budi Santoso, Jakarta</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column footer-logo">
+                <img src="image/Logo.png" alt="Aurelia Hotel Logo">
+                <p>Hotel bintang lima di Seminyak dengan pelayanan terbaik, lokasi strategis, dan fasilitas lengkap untuk liburan atau bisnis Anda.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Kontak</h4>
+                <p>📍 Jln. Jalan Test Luar 88, Seminyak</p>
+                <p>📞 021-555-9999</p>
+                <p>📧 hello@aureliahotel.com</p>
+            </div>
+            <div class="footer-column">
+                <h4>Navigasi</h4>
+                <p><a href="index.html">Home</a></p>
+                <p><a href="room.html">Rooms</a></p>
+                <p><a href="fasilitas.html">Facilities</a></p>
+                <p><a href="gallery.html">Gallery</a></p>
+                <p><a href="contact.html">Contact</a></p>
+                <p><a href="booking.html">Booking</a></p>
+            </div>
+            <div class="footer-column">
+                <h4>Ikuti Kami</h4>
+                <p><a href="#">🌐 info@aureliahotel.com</a></p>
+                <p><a href="#">📷 Instagram</a></p>
+                <p><a href="#">📘 Facebook</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 Aurelia Hotel. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
